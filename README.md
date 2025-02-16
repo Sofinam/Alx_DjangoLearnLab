@@ -1,1 +1,1 @@
-# Alx_DjangoLearnLab
+# This is a Django project
