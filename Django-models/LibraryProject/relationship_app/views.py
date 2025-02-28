@@ -7,7 +7,10 @@ from .models import Library
 # Function based view which lists all books with their authors
 def book_list(request):
     books = Book.objects.all()
-    book_details = "\n" .join([f"{Book.title} by {Book.author.name}" for books in books])
+    book_details = "\n" .join([f"{book.title} by {book.author.name}" for book in books])
+
+    if not book_details:
+        return HttpResponse(f"<pre>No books available.</pre>")
     return HttpResponse(f"<pre>{book_details}</pre>")
 
 #Class-based view, displays details of a specific library
