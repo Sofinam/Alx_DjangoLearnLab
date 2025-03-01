@@ -1,1 +1,0 @@
-This is a Django Project. How to install Django, how to create a project.
