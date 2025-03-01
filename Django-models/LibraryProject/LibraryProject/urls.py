@@ -16,11 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from relationship_app.views import index
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('relationship/', include('relationship_app.urls')),
-    path('', index, name='home'),
+    
 ]
