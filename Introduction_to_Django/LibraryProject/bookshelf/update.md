@@ -1,9 +1,9 @@
 #Update Operation
 ```python
-book = Book.objects.get(title="Tom Sawyer")
-book.title = "Tom Sawyer"
+book = Book.objects.get(title="1948")
+book.title = "Nineteen Eighty-Four"
 book.save()
 print(book)
 
 #Output
-Tom Sawyer b Mark Twain (2002)
+Nineteen Eighty-Four by George Orwell (1949)

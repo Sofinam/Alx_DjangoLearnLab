@@ -1,8 +1,8 @@
 #Create Operation
 ```python
 from bookshelf .models import Book
-book = Book.objects.create(title="Tom Sawyer", author="Mark Twain", publication_year="2002")
+book = Book.objects.create(title="1984", author="George Orwell", publication_year="1949")
 print(book)
 
 #Output
-Tom Sawyer b Mark Twain (2002)
+1984 by George Orwell (1949)
