@@ -7,4 +7,4 @@ book.delete()
 print("Book deleted successfully.")
 
 # Output
-<QuerySet []>
+Book deleted successfully.
