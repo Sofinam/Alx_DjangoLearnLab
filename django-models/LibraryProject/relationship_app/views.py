@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Book
 from django.views.generic.detail import DetailView
+from .models import Book
 from .models import Library
 
 # Function based view
