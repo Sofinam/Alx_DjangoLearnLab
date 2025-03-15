@@ -13,6 +13,14 @@ class Book(models.Model):
     def __str__(self):
         return f"{self.title} b {self.author} ({self.publication_year})"
     
+    # implemented the meta class
+    class Meta:
+        permissions = [
+            ("can_view", "Can view book"),
+            ("can_create", "Can create book"),
+            ("can_edit", "Can edit book"),
+            ("can_delete", "Can delete book"),
+        ]
 
 # Custom User Manager
 class CustomUserManager(BaseUserManager):
