@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,10 +27,27 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Security settings
+SECURE_BROWSER_XSS_FILTER = True  # Prevents XSS attacks
+X_FRAME_OPTIONS = 'DENY'  # Prevents clickjacking
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevents MIME type sniffing
+
+# Ensure cookies are only sent over HTTPS
+CSRF_COOKIE_SECURE = True  
+SESSION_COOKIE_SECURE = True  
+SECURE_SSL_REDIRECT = True  # Redirects all HTTP traffic to HTTPS
+
+# Content Security Policy (CSP) (if using `django-csp`)
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", 'https://trusted-cdn.com')  # Allow scripts only from self or trusted CDN
+CSP_STYLE_SRC = ("'self'", 'https://trusted-cdn.com')  # Allow styles only from self or trusted CDN
+
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'csp'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +59,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'csp.middleware.CSPMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

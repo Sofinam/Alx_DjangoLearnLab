@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponseForbidden
 from .models import Book
 from .forms import BookForm
+from django.db.models import Q
+from django.http import HttpResponse
 
 # Create your views here.
 @permission_required('bookshelf.can_view', raise_exception=True)
@@ -40,3 +42,14 @@ def book_delete(request, book_id):
         book.delete()
         return redirect('book_list')
     return render(request, 'books/book_confirm_delete.html', {'book': book})
+
+def book_search(request):
+    search_query = request.GET.get('q', '')
+    books = Book.objects.filter(Q(title__icontains=search_query))
+    return render(request, 'bookshelf/book_list.html', {'books': books})
+
+
+def secure_view(request):
+    response = HttpResponse("This is a secure page.")
+    response["Content-Security-Policy"] = "default-src 'self'"
+    return response
